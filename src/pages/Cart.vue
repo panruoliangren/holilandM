@@ -1,5 +1,10 @@
 <template>
     <div class="cart">
+        <mt-header title="购物车">
+        <router-link to="" slot="left" @click.native="back()">
+            <mt-button icon="back">返回</mt-button>
+        </router-link>
+        </mt-header>
         <div class="cart-list">
             <CartItem  
                 v-for="item in cart"
@@ -33,6 +38,11 @@ export default {
     computed:{
         ...mapState(['cart']),
         ...mapGetters(['totalAmount','totalPrice'])
+    },
+    methods:{
+        back(){
+            this.$router.go(-1)
+        }
     }
 }
 </script>

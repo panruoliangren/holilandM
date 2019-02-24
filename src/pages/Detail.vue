@@ -1,5 +1,10 @@
 <template>
 	<div class="detail">
+        <mt-header title="商品信息">
+        <router-link to="" slot="left" @click.native="back()">
+            <mt-button icon="back">返回</mt-button>
+        </router-link>
+        </mt-header>
 		<div class="detail-swiper">
 			<mt-swipe :auto="4000">
 			  <mt-swipe-item
@@ -52,6 +57,9 @@
             ...mapMutations(['addCartItem']),
             goCart(){
                 this.$router.push("/cart")
+            },
+            back(){
+                this.$router.go(-1)
             }
 		},
 		created(){           

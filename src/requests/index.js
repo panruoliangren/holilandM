@@ -52,3 +52,13 @@ export const getProductList=(categoryId)=>{
 export const getDetail=(id)=>{
     return ajax.get('/api/detail')
 }
+
+// 用户登录
+export const postLogin=({username,password})=>{
+    return ajax.post("/api/login");
+}
+
+// 用户注册
+export const postRegister=({username,password})=>{
+    return ajax.post("/api/register");
+}

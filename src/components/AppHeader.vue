@@ -3,23 +3,58 @@
         <h1>
             <router-link to="/" class="logo"></router-link>
         </h1>
-        <ul class="header-right">
+        <ul class="header-right" :class="{'noshow':isNone1}">
             <li>
-                <router-link to="/">登陆</router-link>|
+                <router-link to="/login">登陆</router-link>|
             </li>
             <li>
-                <router-link to="/">注册</router-link>|
+                <router-link to="/register">注册</router-link>
+            </li>
+        </ul>
+        <ul class="header-right" :class="{'noshow':isNone2}">
+            <li>
+                <router-link to="">欢迎！</router-link>|
             </li>
             <li>
-                <router-link to="/cart">购物车</router-link>
+                <router-link to="" @click.native="quit">退出</router-link>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
+import{
+    mapMutations
+}from 'vuex'
+
 export default {
     name:"AppHeader",
+    data(){
+        return{
+            isNone1:false,
+            isNone2:true
+        }
+    },
+    created(){
+        if(this.$store.state.isLogin){
+            this.isNone1=true
+            this.isNone2=false
+        }else{
+            this.isNone1=false
+            this.isNone2=true
+        }
+    },
+    methods:{
+        ...mapMutations(['modifyLoginState']),
+        quit(){
+            window.localStorage.removeItem('loginUsername')
+            window.localStorage.removeItem('token')       
+            this.modifyLoginState(false)
+            this.isNone1=false
+            this.isNone2=true
+        }
+         
+    }
 }
 </script>
 
@@ -50,6 +85,9 @@ export default {
                     padding: 0 5px;
                 }
             }
+        }
+        .noshow{
+            display: none;
         }
     }
 </style>

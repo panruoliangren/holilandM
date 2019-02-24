@@ -5,7 +5,6 @@
                 v-for="nav in navs"
                 :key="nav.path"
                 :id="nav.name">
-                <!-- <img slot="icon" src="../assets/100x100.png" :class="{'noShow':nav.meta.isNone}"> -->
                 {{nav.meta.navTitle}}              
             </mt-tab-item>
             <ul class="sub-nav" :class="{'noshow':isSubNav}">

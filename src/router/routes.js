@@ -7,6 +7,8 @@ const Cart = () => import("@/pages/Cart.vue")
 const Mine = () => import("@/pages/Mine.vue")
 const CategoryList = () => import("@/pages/CategoryList.vue")
 const Detail = () => import("@/pages/Detail.vue")
+const Login = () => import("@/pages/Login.vue")
+const Register = () => import("@/pages/Register.vue")
 const routes=[
     {
       path: '/',
@@ -24,8 +26,7 @@ const routes=[
         },
         meta:{
             navTitle:"主页",
-            isNav:true,
-            isNone:true
+            isNav:true
         }
     },{
         path:"/category",
@@ -37,8 +38,7 @@ const routes=[
         },
         meta:{
           navTitle:"产品",
-          isNav:true,
-          isNone:false
+          isNav:true
         },
         children:[
           {
@@ -59,7 +59,7 @@ const routes=[
         meta:{
           navTitle:"购物车",
           isNav:true,
-          isNone:true
+          isAuthCheck:true  //需要有权限才能查看
         }
       },{
         path:"/mine",
@@ -71,13 +71,33 @@ const routes=[
         meta:{
           navTitle:"个人中心",
           isNav:true,
-          isNone:false
+          isAuthCheck:true  
         }
       },{
         path:"/detail/:id",
         name:"detail",
         components:{
           main:Detail,
+          tabbar:Tabbar
+        },
+        meta:{
+          isNav:false
+        }
+      },{
+        path:"/login",
+        name:"login",
+        components:{
+          main:Login,
+          tabbar:Tabbar
+        },
+        meta:{
+          isNav:false
+        }
+      },{
+        path:"/register",
+        name:"register",
+        components:{
+          main:Register,
           tabbar:Tabbar
         },
         meta:{

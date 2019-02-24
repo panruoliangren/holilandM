@@ -40,5 +40,9 @@ export default{
             if(curr.id!=id)
                 return true 
         })
+    },
+    // 登陆验证保持一致
+    modifyLoginState(state,isLogin){
+        state.isLogin=isLogin
     }
 }

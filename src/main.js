@@ -14,16 +14,24 @@ Vue.use(MintUI)
 
 Vue.config.productionTip = false
 
+// 是否登录
 router.beforeEach((to,from,next)=>{
-  if(to.name==='mine'){
-    const r=Math.random()
-    console.log(r)
-    if(r>0.5){
-      next("/home")
+  if(to.meta.isAuthCheck){
+    if(store.state.isLogin){ 
+      next()
+    }else{
+      next({
+        name:"login",
+        params:{
+          from:to 
+        }
+      })
     }
+  }else{
+    next()
   }
-  next(); 
 })
+
 //全局Minxin
 Vue.mixin({
   filters:{
